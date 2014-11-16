@@ -1,3 +1,6 @@
+## Please Note
+This is a fork of https://github.com/jaredhanson/passport-yahoo-oauth, that I have customized for my own use. The only changes are that I've changed the profile URL to https (now required by Yahoo!) and I've added the "oauth_session_handle" to the user object which aids in renewing client tokens after the hour that they expire in.
+
 # Passport-Yahoo-OAuth
 
 [Passport](http://passportjs.org/) strategies for authenticating with [Yahoo!](http://www.yahoo.com/)
