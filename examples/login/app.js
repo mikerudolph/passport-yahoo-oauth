@@ -30,12 +30,12 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new YahooStrategy({
     consumerKey: YAHOO_CONSUMER_KEY,
     consumerSecret: YAHOO_CONSUMER_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/yahoo/callback"
+    callbackURL: "http://127.0.0.1:3000/auth/callback"
   },
   function(token, tokenSecret, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // To keep the example simple, the user's Yahoo profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Yahoo account with a user record in your database,
@@ -85,7 +85,7 @@ app.get('/login', function(req, res){
 //   request.  The first step in Yahoo authentication will involve redirecting
 //   the user to yahoo.com.  After authorization, Yahoo will redirect the user
 //   back to this application at /auth/yahoo/callback
-app.get('/auth/yahoo',
+app.get('/auth',
   passport.authenticate('yahoo'),
   function(req, res){
     // The request will be redirected to Yahoo for authentication, so this
@@ -97,7 +97,7 @@ app.get('/auth/yahoo',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/yahoo/callback', 
+app.get('/auth/callback', 
   passport.authenticate('yahoo', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');

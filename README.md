@@ -28,7 +28,7 @@ specifying a consumer key, consumer secret, and callback URL.
     passport.use(new YahooStrategy({
         consumerKey: YAHOO_CONSUMER_KEY,
         consumerSecret: YAHOO_CONSUMER_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/yahoo/callback"
+        callbackURL: "http://127.0.0.1:3000/auth/callback"
       },
       function(token, tokenSecret, profile, done) {
         User.findOrCreate({ yahooId: profile.id }, function (err, user) {
@@ -45,10 +45,10 @@ authenticate requests.
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
-    app.get('/auth/yahoo',
+    app.get('/auth',
       passport.authenticate('yahoo'));
 
-    app.get('/auth/yahoo/callback',
+    app.get('/auth/callback',
       passport.authenticate('yahoo', { failureRedirect: '/login' }),
       function(req, res) {
         // Successful authentication, redirect home.
